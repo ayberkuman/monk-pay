@@ -143,17 +143,28 @@ export class UserDetail extends Component {
             <div className="border-radius border rounded">
               <div className="card-title">Hasta Kartı</div>
               <div className="card-body">
-                <p>
+                <p style={{ fontSize: "large" }}>
                   {this.state.name}
                   <br />
                   <br />
-                  T.C. : {this.state.tckn}
                 </p>
+                {!this.state.tckn ? (
+                  <div></div>
+                ) : (
+                  <div>
+                    {" "}
+                    T.C. :
+                    <br />
+                    {this.state.tckn}
+                  </div>
+                )}
                 {/* <p>
                   Hasta No:
                   <br />
                   {this.state.passionNo}
                 </p> */}
+                <br />
+
                 <p>
                   Telefon:
                   <br /> {this.state.phone}
