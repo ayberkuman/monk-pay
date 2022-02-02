@@ -4,6 +4,9 @@ import { scrollToTop } from "../utils/helper";
 import API, { headers } from "../utils/API";
 import { authRoutes } from "../App/routes";
 import { validateInput } from "../utils/helper";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
+
 export class CreatePatient extends Component {
   constructor(props) {
     super(props);
@@ -36,53 +39,31 @@ export class CreatePatient extends Component {
 
   handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === "phoneNumber") {
-      var val = value.replace(/^[\d\(\)\+]+$/m, "");
-      if (val === "") {
-        this.setState({ [name]: value }, () => {
-          setTimeout(this.handleCheck, 20);
-        });
-      }
-    } else {
-      this.setState({ [name]: value }, () => {
-        setTimeout(this.handleCheck, 20);
-      });
-    }
+
+    this.setState({ [name]: value }, () => {
+      setTimeout(this.handleCheck, 20);
+    });
   };
 
   handleCheck = () => {};
   postData = (redirect) => {
+    console.log(this.state);
     const { tckn, firstName, lastName, eMail, phoneNumber, address } =
       this.state;
     this.setState(
       {
-        tcknError: tckn === "" ? "Geçerli bir TCKN numarası giriniz" : "",
         firstNameError: firstName === "" ? "Lütfen adınızı giriniz" : "",
         lastNameError: lastName === "" ? "Lütfen soyadınızı giriniz" : "",
         eMailError: !validateInput("email", eMail)
           ? "Geçerli bir e-posta adresi giriniz"
           : "",
-        phoneNumberError: !validateInput("tel", phoneNumber)
-          ? "Geçerli bir telefon numarası giriniz"
-          : "",
-        addressError: address === "" ? "Lütfen adresinizi giriniz" : "",
       },
       () => {
-        const {
-          tcknError,
-          firstNameError,
-          lastNameError,
-          eMailError,
-          phoneNumberError,
-          addressError,
-        } = this.state;
+        const { firstNameError, lastNameError, eMailError } = this.state;
         if (
-          tcknError === "" &&
           firstNameError === "" &&
           lastNameError === "" &&
-          eMailError === "" &&
-          phoneNumberError === "" &&
-          addressError === ""
+          eMailError === ""
         ) {
           this.props.pageLoadingSet(true);
           const data = {
@@ -102,6 +83,7 @@ export class CreatePatient extends Component {
               Authorization: `Bearer ${this.props.user.token}`,
             },
           })
+
             .then((res) => {
               this.props.pageLoadingSet(false);
               if (redirect === "pay") {
@@ -140,6 +122,7 @@ export class CreatePatient extends Component {
     this.postData("pay");
   };
   render() {
+    console.log(this.state.phoneNumber);
     return (
       <div className="Payments">
         <div className="align-items-center justify-content-between mt-4 mb-4">
@@ -150,7 +133,7 @@ export class CreatePatient extends Component {
           </div>
         </div>
         <div className="row mt-3">
-          <div className="col-md-4 mt-2">
+          {/* <div className="col-md-4 mt-2">
             <InputWLabel
               classes="mt-3"
               type="text"
@@ -164,8 +147,8 @@ export class CreatePatient extends Component {
               tabIndex={1}
               errorMessage={this.state.tcknError}
             />
-          </div>
-          <div className="col-md-4 mt-2">
+          </div> */}
+          <div className="col-md-3 mt-2">
             <InputWLabel
               classes="mt-3"
               type="text"
@@ -180,7 +163,7 @@ export class CreatePatient extends Component {
               errorMessage={this.state.firstNameError}
             />
           </div>
-          <div className="col-md-4 mt-2">
+          <div className="col-md-3 mt-2">
             <InputWLabel
               classes="mt-3"
               type="text"
@@ -195,7 +178,48 @@ export class CreatePatient extends Component {
               errorMessage={this.state.lastNameError}
             />
           </div>
-          <div className="col-md-4 mt-2">
+          <div className="col-md-3">
+            <PhoneInput
+              placeholder="Cep telefonu"
+              country={"tr"}
+              containerStyle={{
+                borderRadius: "8px",
+                color: "#474555",
+                width: "300px",
+              }}
+              inputStyle={{
+                height: "58px",
+              }}
+              name="phoneNumber"
+              ccName="cc"
+              value={this.state.phoneNumber}
+              onChange={(phone) => {
+                this.setState({
+                  phoneNumber: phone,
+                });
+              }}
+              ccValue={this.state.phoneNumber.cc}
+              maxLength={10}
+            />
+          </div>
+
+          {/*  <div className="col-md-6 mt-2">
+            <InputWLabel
+              classes="mt-3"
+              type="phone"
+              name="phoneNumber"
+              id="phoneNumber"
+              label="Telefon"
+              placeholder="Telefon"
+              value={this.state.phoneNumber}
+              setValue={this.handleChange}
+              inputRef={this.phoneNumberRef}
+              tabIndex={1}
+              errorMessage={this.state.phoneNumberError}
+            />
+          </div> */}
+          <div className="col-md-3"></div>
+          <div className="col-md-6 mt-2">
             <InputWLabel
               classes="mt-3"
               type="email"
@@ -210,21 +234,7 @@ export class CreatePatient extends Component {
               errorMessage={this.state.eMailError}
             />
           </div>
-          <div className="col-md-4 mt-2">
-            <InputWLabel
-              classes="mt-3"
-              type="phone"
-              name="phoneNumber"
-              id="phoneNumber"
-              label="Telefon"
-              placeholder="Telefon"
-              value={this.state.phoneNumber}
-              setValue={this.handleChange}
-              inputRef={this.phoneNumberRef}
-              tabIndex={1}
-              errorMessage={this.state.phoneNumberError}
-            />
-          </div>
+
           {/* <div className="col-md-8 mt-2">
             <InputWLabel
               classes="mt-3"
