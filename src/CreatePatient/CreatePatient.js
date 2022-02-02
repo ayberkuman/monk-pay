@@ -178,18 +178,24 @@ export class CreatePatient extends Component {
               errorMessage={this.state.lastNameError}
             />
           </div>
-          <div className="col-md-3">
+          <div className="col-md-3"></div>
+          <div className="col-md-6 mt-2">
+            <label style={{ fontSize: "16px", marginBottom: "5px" }}>
+              Cep Telefonu
+            </label>
             <PhoneInput
               placeholder="Cep telefonu"
               country={"tr"}
               containerStyle={{
                 borderRadius: "8px",
                 color: "#474555",
-                width: "300px",
               }}
               inputStyle={{
                 height: "58px",
+                width: "660px",
               }}
+              specialLabel="cep"
+              label="Cep Telefonu"
               name="phoneNumber"
               ccName="cc"
               value={this.state.phoneNumber}
@@ -202,8 +208,7 @@ export class CreatePatient extends Component {
               maxLength={10}
             />
           </div>
-
-          {/*  <div className="col-md-6 mt-2">
+          {/* <div className="col-md-6 mt-2">
             <InputWLabel
               classes="mt-3"
               type="phone"
@@ -218,8 +223,8 @@ export class CreatePatient extends Component {
               errorMessage={this.state.phoneNumberError}
             />
           </div> */}
-          <div className="col-md-3"></div>
-          <div className="col-md-6 mt-2">
+          <div className="col-md-3 mt-2"></div>
+          <div className="col-md-6 mt-5">
             <InputWLabel
               classes="mt-3"
               type="email"
@@ -234,7 +239,6 @@ export class CreatePatient extends Component {
               errorMessage={this.state.eMailError}
             />
           </div>
-
           {/* <div className="col-md-8 mt-2">
             <InputWLabel
               classes="mt-3"
