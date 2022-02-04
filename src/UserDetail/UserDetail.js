@@ -148,6 +148,21 @@ export class UserDetail extends Component {
                   <br />
                   <br />
                 </p>
+                <p>
+                  Telefon:
+                  <br /> {this.state.phone}
+                </p>
+
+                {/* <p>
+                  Hasta No:
+                  <br />
+                  {this.state.passionNo}
+                </p> */}
+                <p>
+                  E-posta:
+                  <br />
+                  {this.state.email}
+                </p>
                 {!this.state.tckn ? (
                   <div></div>
                 ) : (
@@ -158,22 +173,7 @@ export class UserDetail extends Component {
                     {this.state.tckn}
                   </div>
                 )}
-                {/* <p>
-                  Hasta No:
-                  <br />
-                  {this.state.passionNo}
-                </p> */}
                 <br />
-
-                <p>
-                  Telefon:
-                  <br /> {this.state.phone}
-                </p>
-                <p>
-                  E-posta:
-                  <br />
-                  {this.state.email}
-                </p>
                 <div className="card-balance">
                   <p className="text-white p-0 m-0 font-weight-bold fs-16">
                     {formatMoney(this.state.balance) + " TL"}
