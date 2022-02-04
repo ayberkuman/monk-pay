@@ -122,7 +122,6 @@ export class CreatePatient extends Component {
     this.postData("pay");
   };
   render() {
-    console.log(this.state.phoneNumber);
     return (
       <div className="Payments">
         <div className="align-items-center justify-content-between mt-4 mb-4">
@@ -133,21 +132,6 @@ export class CreatePatient extends Component {
           </div>
         </div>
         <div className="row mt-3">
-          {/* <div className="col-md-4 mt-2">
-            <InputWLabel
-              classes="mt-3"
-              type="text"
-              name="tckn"
-              id="tckn"
-              label="Kimlik Numarası"
-              placeholder="Kimlik Numarası"
-              value={this.state.tckn}
-              setValue={this.handleChange}
-              inputRef={this.tcknRef}
-              tabIndex={1}
-              errorMessage={this.state.tcknError}
-            />
-          </div> */}
           <div className="col-md-3 mt-2">
             <InputWLabel
               classes="mt-3"
@@ -237,6 +221,23 @@ export class CreatePatient extends Component {
               inputRef={this.eMailRef}
               tabIndex={1}
               errorMessage={this.state.eMailError}
+            />
+          </div>
+          <div className="col-md-3 mt-2"></div>
+
+          <div className="col-md-6 mt-2">
+            <InputWLabel
+              classes="mt-3"
+              type="text"
+              name="tckn"
+              id="tckn"
+              label="Kimlik Numarası"
+              placeholder="Kimlik Numarası"
+              value={this.state.tckn}
+              setValue={this.handleChange}
+              inputRef={this.tcknRef}
+              tabIndex={1}
+              errorMessage={this.state.tcknError}
             />
           </div>
           {/* <div className="col-md-8 mt-2">
