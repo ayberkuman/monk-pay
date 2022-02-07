@@ -1,14 +1,11 @@
 import React, { Component, createRef } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import avatar from '../../assets/images/avatar.svg'
+import avatar from "../../assets/images/avatar.svg";
 import { logout, update } from "../../Auth/authActions";
-import {
-  authRoutes,
-  globalRoutes,
-  guestRoutes,
-} from "../routes";
+import { authRoutes, globalRoutes, guestRoutes } from "../routes";
 import { UserArea } from "./components/UserArea";
+import Breadcrumbs from "../Layout/components/breadCrumbs/Breadcrumbs";
 
 const allRoutes = {
   ...globalRoutes,
@@ -55,7 +52,7 @@ class Header extends Component {
       >
         <div className="row">
           <div className="col-6 d-flex align-items-center">
-            <p className='m-0'>{this.props.headerTitle}</p>
+            <Breadcrumbs />
           </div>
           <div className="col-6 d-flex justify-content-end align-items-center">
             <span className="d-none d-md-flex">
