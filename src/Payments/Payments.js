@@ -33,7 +33,8 @@ export class Payments extends Component {
     API.get(
       `Payment/ListByPassion?searchBy=${this.state.search}&currentpage=${
         this.state.currentpage
-      }&length=${400}`,
+      }&length=${500}`,
+
       {
         headers: {
           ...headers,
