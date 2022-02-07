@@ -29,7 +29,7 @@ yarn-error.log*
 
 # testing
 /coverage
-
+.eslintcache
 # misc
 .DS_Store
 .env.local
